@@ -3,23 +3,80 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>GTA VI trophy checklist</title>
+<title>Leonida Trophy Guide — GTA VI (PS5)</title>
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<header>
-  <h1>GTA VI trophy checklist</h1>
-  <p id="progress">0 of 55 earned</p>
+<header class="masthead">
+  <div>
+    <p class="kicker">Grand Theft Auto VI &middot; PlayStation 5 &middot; 55 trophies &middot; offline guide</p>
+    <h1>Leonida Trophy Guide</h1>
+    <p class="lede">Every trophy, its official name, description and grade, a guide in our own words with its sources, a roadmap to the platinum — and a checklist that remembers what you have earned. No online trophies. No cheats on a trophy run: cheats switch trophies and saving off.</p>
+  </div>
+  <div class="progress-card" id="progressCard">
+    <div class="big-number"><span id="earnedCount">0</span><span class="of"> / 55</span></div>
+    <div class="bar" role="progressbar" aria-label="Trophies earned"><div class="fill" id="progressFill"></div></div>
+    <p id="progressText">0% to the platinum</p>
+    <p class="grade-counts" id="gradeCounts"></p>
+    <p class="estimate">Platinum: ~200 hours &middot; difficulty 4/10 &middot; 1 playthrough &middot; source: PowerPyx</p>
+  </div>
 </header>
-<div class="controls">
-  <label>Grade <select id="grade"><option value="all">All</option><option value="platinum">Platinum</option><option value="gold">Gold</option><option value="silver">Silver</option><option value="bronze">Bronze</option></select></label>
-  <button id="export" type="button">Export progress</button>
-  <label class="import">Import progress <input id="import" type="file" accept="application/json"></label>
-</div>
-<table>
-  <thead><tr><th>Earned</th><th>Trophy</th><th>Grade</th><th>How to get it</th></tr></thead>
-  <tbody id="rows"></tbody>
-</table>
+
+<section class="warning" id="missableBanner">
+  <strong>&#9888; One trophy can be missed.</strong>
+  <span><strong>Positive Mental Attitude</strong> — meditate at every spot. In Chapter 1, after the mission Down to Earth, talk to Lucia in the kitchen in the morning, follow her to the balcony and choose Accept. That meditation is gone after Chapter 1. Details in its guide below. Everything else can be finished after the story.</span>
+  <button type="button" id="jumpMissable">Show it</button>
+</section>
+
+<section class="controls" aria-label="Tracker controls">
+  <div class="control-row">
+    <label class="search">Search <input id="search" type="search" placeholder="Trophy, mission or place…" autocomplete="off"></label>
+    <label class="grade-label">Grade
+      <select id="grade">
+        <option value="all">All grades</option>
+        <option value="platinum">Platinum</option>
+        <option value="gold">Gold</option>
+        <option value="silver">Silver</option>
+        <option value="bronze">Bronze</option>
+      </select>
+    </label>
+    <label class="check"><input type="checkbox" id="hideEarned"> Hide earned</label>
+    <label class="check"><input type="checkbox" id="spoilers"> Hide story spoilers until earned</label>
+  </div>
+  <div class="control-row" id="kindFilters" role="group" aria-label="Filter by kind">
+    <button type="button" data-kind="all" class="kind active">All 55</button>
+    <button type="button" data-kind="story" class="kind">Story</button>
+    <button type="button" data-kind="missable" class="kind">Missable</button>
+    <button type="button" data-kind="collectibles" class="kind">Collectibles</button>
+    <button type="button" data-kind="activities" class="kind">Activities</button>
+    <button type="button" data-kind="online" class="kind">Online</button>
+  </div>
+  <div class="control-row">
+    <button type="button" id="export">Export progress (.json)</button>
+    <label class="import-btn">Import progress <input id="import" type="file" accept="application/json,.json"></label>
+    <button type="button" id="reset">Reset progress</button>
+    <span class="saved-note" id="savedNote">Progress is saved in this browser (localStorage).</span>
+  </div>
+  <p class="count-line" id="countLine"></p>
+</section>
+
+<main>
+  <ol class="trophies" id="trophyList"></ol>
+  <p class="empty" id="emptyState" hidden>No trophies match these filters.</p>
+  <p class="empty" id="onlineNote" hidden>There are no online trophies in GTA VI — all 55 are single-player and offline. Sources: PowerPyx trophy guide; Exophase / PSNProfiles list.</p>
+</main>
+
+<section class="roadmap" id="roadmap" aria-label="Roadmap to the platinum">
+  <h2>Roadmap to the platinum</h2>
+  <p class="section-note">Built from the official descriptions: which story chapters and missions, which collectibles and counts, in what order. Click a stage to filter the checklist to its trophies.</p>
+  <ol class="stages" id="stages"></ol>
+</section>
+
+<footer>
+  <h2>Sources &amp; honesty note</h2>
+  <p>Official names, descriptions and grades: the PlayStation list as published by Exophase and PSNProfiles (the two agree on all 55). Roadmap and most guides draw on the <a href="https://www.powerpyx.com/gta-6-grand-theft-auto-vi-trophy-guide-roadmap/">PowerPyx GTA 6 Trophy Guide &amp; Roadmap</a>, cross-checked against the <a href="https://www.gtabase.com/articles/gta-6/gta-6-achievements-trophies-list-ps5-xbox-series">GTABase list</a> and the <a href="https://outputlag.com/guides/gta-6-trophy-list/">OutputLag list</a>. Every trophy's guide names its sources beside it. Five trophies (In The Beginning…, Capital Offense, Bad Luck, I Guess, The Truth Is Out There, Ten Pin) had no confirmed unlock method at launch — this guide says so instead of inventing one. All guide text is written for this page in our own words; sources are cited, never copied. This is an unofficial fan guide. Grand Theft Auto and GTA are trademarks of Take-Two Interactive; no Rockstar logo, artwork or game screenshots are used here.</p>
+  <p>Works fully offline: the whole guide lives in this page and its data file, and your progress never leaves your browser unless you export it.</p>
+</footer>
 <script type="module" src="app.js"></script>
 </body>
 </html>
